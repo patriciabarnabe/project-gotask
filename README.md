@@ -19,7 +19,7 @@ This project allows users to organize their daily tasks efficiently, keeping eve
 
 The UI/UX of this project is based on a Figma design:
 
-👉 https://www.figma.com/community/file/1514619920111470475
+👉 [View Figma Design](https://www.figma.com/community/file/1514619920111470475)
 
 ---
 
