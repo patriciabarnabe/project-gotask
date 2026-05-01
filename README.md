@@ -1,59 +1,121 @@
-# ProjectGoTask
+# 🚀 Project GoTask
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+A modern and responsive task management application built with Angular.  
+This project allows users to organize their daily tasks efficiently, keeping everything structured and easy to manage.
 
-## Development server
+---
 
-To start a local development server, run:
+## ✨ Features
+
+- ✅ Add new tasks
+- 💬 Add comments to tasks
+- 🗑️ Delete tasks
+- 📱 Fully responsive design (mobile-first)
+- ⚡ Fast and dynamic UI
+
+---
+
+## 🎨 Design
+
+The UI/UX of this project is based on a Figma design:
+
+👉 https://www.figma.com/community/file/1514619920111470475
+
+---
+
+## 🛠️ Tech Stack
+
+- Angular 19
+- TypeScript
+- Tailwind CSS
+- RxJS
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 2. Run the development server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then open your browser at:
 
-## Code scaffolding
+http://localhost:4200/
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The app will automatically reload when you change any source files.
+
+---
+
+## 🧱 Code Scaffolding
+
+Generate new components, services, and more using Angular CLI:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+See all available options:
 
 ```bash
 ng generate --help
 ```
 
-## Building
+---
 
-To build the project run:
+## 📦 Build
+
+To build the project:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The build output will be stored in the `dist/` folder.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🧪 Running Tests
+
+Run unit tests:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🔍 End-to-End Tests
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+> Angular CLI does not include an e2e framework by default.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📚 Additional Resources
+
+- Angular CLI Documentation: https://angular.dev/tools/cli
+
+---
+
+## 📌 About the Project
+
+This project is a responsive task management application that allows users to:
+
+- Create tasks
+- Add comments to tasks
+- Delete items
+
+It was built focusing on good frontend practices such as componentization, state management, and clean architecture.
