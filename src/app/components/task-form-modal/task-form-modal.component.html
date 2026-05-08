@@ -1,1 +1,50 @@
-<p>task-form-modal works!</p>
+<form class="rounded-xl overflow-hidden bg-white">
+  <div class="flex gap-1 items-center p-4">
+    <img src="images/icon-new-task.svg" alt="New Task Icon" />
+    <h1 class="font-semibold text-lg">Criar/Editar tarefa</h1>
+    <img
+      src="images/icon-close.svg"
+      alt="Close Icon"
+      class="ml-auto cursor-pointer"
+    />
+  </div>
+  <div class="p-4 border-y border-[#D1D5DB] flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sm mb-2">Nome</p>
+      <input
+        type="text"
+        placeholder="Descreva o que deverá ser feito"
+        class="w-full border border-[#D1D5DB] p-3 rounded-lg text-sm font-light text-[#89919F]"
+      />
+      <p class="font-semibold text-sm text-red-500">
+        O campo é obrigatório e precisa ter no mínimo 10 caracteres.
+      </p>
+    </div>
+    <div>
+      <p class="font-semibold text-sm mb-2">Descrição</p>
+      <input
+        type="text"
+        placeholder="Adicione uma descrição"
+        class="w-full border border-[#D1D5DB] p-3 rounded-lg text-sm font-light text-[#89919F]"
+      />
+      <p class="font-semibold text-sm text-red-500">
+        O campo é obrigatório e precisa ter no mínimo 10 caracteres.
+      </p>
+    </div>
+  </div>
+  <div class="p-4 flex justify-end gap-2">
+    <!-- Type button para que o form não seja submetido quando clicar no botão cancelar, pois o padrão do botão é submit, e isso pode causar um comportamento indesejado. -->
+    <button
+      type="button"
+      class="py-3 px-4 bg-[#FAFAFA] rounded-xl text-sm font-semibold cursor-pointer active:translate-y-1 transition-transform duration-75"
+    >
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      class="py-3 px-4 bg-[#2A89EF] rounded-xl text-sm font-semibold cursor-pointer active:translate-y-1 transition-transform duration-75 shadow-md shadow-blue-500/50 text-white"
+    >
+      Criar uma tarefa
+    </button>
+  </div>
+</form>
