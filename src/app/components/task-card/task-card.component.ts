@@ -11,9 +11,13 @@ export class TaskCardComponent {
   private readonly _modalControllerService = inject(ModalControllerService);
 
   openEditTaskModal() {
-    this._modalControllerService.openEditTaskModal({
+    const dialogRef = this._modalControllerService.openEditTaskModal({
       name: 'Task Name',
       description: 'Task Description',
+    });
+
+    dialogRef.closed.subscribe((taskForm) => {
+      console.log('Task updated:', taskForm);
     });
   }
 }
