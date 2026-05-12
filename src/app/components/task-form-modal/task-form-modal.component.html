@@ -12,6 +12,7 @@
       src="images/icon-close.svg"
       alt="Close Icon"
       class="ml-auto cursor-pointer"
+      (click)="closeModal()"
     />
   </div>
   <div class="p-4 border-y border-[#D1D5DB] flex flex-col gap-4">
@@ -52,6 +53,7 @@
     <button
       type="button"
       class="py-3 px-4 bg-[#FAFAFA] rounded-xl text-sm font-semibold cursor-pointer active:translate-y-1 transition-transform duration-75"
+      (click)="closeModal()"
     >
       Cancelar
     </button>
