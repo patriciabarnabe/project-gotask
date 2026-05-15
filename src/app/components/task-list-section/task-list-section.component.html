@@ -1,4 +1,8 @@
 <!-- https://angular.dev/guide/drag-drop#transfer-draggable-elements-between-lists -->
+@let todoTasks = (this._taskService.todoTasks | async) ?? [];
+@let doingTasks = (this._taskService.doingTasks | async) ?? [];
+@let doneTasks = (this._taskService.doneTasks | async) ?? [];
+
 
 <div class="p-3 mb-6 flex overflow-x-auto scrollbar-hidden">
   <!-- Coluna A Fazer -->
