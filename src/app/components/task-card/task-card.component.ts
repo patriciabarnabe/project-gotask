@@ -13,7 +13,7 @@ export class TaskCardComponent {
   @Input({ required: true }) task!: ITask;
 
   private readonly _modalControllerService = inject(ModalControllerService);
-  private readonly _task = inject(TaskService);
+  private readonly _taskService = inject(TaskService);
 
   openEditTaskModal() {
     const dialogRef = this._modalControllerService.openEditTaskModal({
@@ -23,7 +23,7 @@ export class TaskCardComponent {
 
     dialogRef.closed.subscribe((taskForm) => {
       if (taskForm) {
-        this._task.updateTaskNameAndDescription(
+        this._taskService.updateTaskNameAndDescription(
           this.task.id,
           this.task.status,
           taskForm.name,
@@ -34,10 +34,19 @@ export class TaskCardComponent {
   }
 
   openTaskCommentsModal() {
-    this.task.comments = [
-      { id: '1', description: 'Comentário 1' },
-      { id: '2', description: 'Comentário 2' },
-    ];
-    this._modalControllerService.openTaskCommentsModal(this.task);
+    const dialogRef = this._modalControllerService.openTaskCommentsModal(
+      this.task,
+    );
+
+    dialogRef.closed.subscribe((taskCommentsChanged) => {
+      if (taskCommentsChanged) {
+        // Atualizar a fonte de verdade
+        this._taskService.updateTaskComments(
+          this.task.id,
+          this.task.status,
+          this.task.comments,
+        );
+      }
+    });
   }
 }
