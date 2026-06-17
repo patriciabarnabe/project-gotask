@@ -5,10 +5,6 @@
 
 @let noTasksCreated = todoTasks.length === 0 && doingTasks.length === 0 && doneTasks.length === 0;
 
-<p>TODO: {{ todoTasks | json }}</p>
-<p>DOING: {{ doingTasks | json }}</p>
-<p>DONE: {{ doneTasks | json }}</p>
-
 <div class="p-3 mb-6 flex overflow-x-auto scrollbar-hidden">
   <!-- Coluna A Fazer -->
   <div

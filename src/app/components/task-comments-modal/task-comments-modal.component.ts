@@ -1,20 +1,27 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  ViewChild,
+  viewChild,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ɵɵDir } from '@angular/cdk/scrolling';
 import { IComment } from '../../interfaces/comment.interface';
 import { generateUniqueIdWithTimestamp } from '../../utils/generate-unique-id-with-timestamp';
 import { ITask } from '../../interfaces/task.interface';
 
 @Component({
   selector: 'app-task-comments-modal',
-  imports: [ReactiveFormsModule, ɵɵDir],
+  imports: [ReactiveFormsModule],
   templateUrl: './task-comments-modal.component.html',
   styleUrl: './task-comments-modal.component.css',
 })
 export class TaskCommentsModalComponent {
   taskCommentsChanged = false;
   commentControl = new FormControl('', [Validators.required]);
+
+  @ViewChild('commentInput') commentInputRef!: ElementRef<HTMLInputElement>;
 
   readonly _task: ITask = inject(DIALOG_DATA);
   readonly _dialogRef: DialogRef<boolean> = inject(DialogRef);
@@ -34,10 +41,21 @@ export class TaskCommentsModalComponent {
 
     // Atualizar a flag/prop se houve alteração nos comentários
     this.taskCommentsChanged = true;
+
+    // Focando no elemento de input
+    this.commentInputRef.nativeElement.focus();
   }
 
   onCloseModal() {
     // Fechar o modal e passar a informação se houve alteração nos comentários
     this._dialogRef.close(this.taskCommentsChanged);
+  }
+
+  onRemoveModal(commentId: string) {
+    this._task.comments = this._task.comments.filter(
+      (comment) => comment.id !== commentId,
+    );
+
+    this.taskCommentsChanged = true;
   }
 }

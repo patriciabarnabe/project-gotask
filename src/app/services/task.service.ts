@@ -117,6 +117,14 @@ export class TaskService {
     }
   }
 
+  deleteTask(taskId: string, taskCurrentStatus: TaskStatus) {
+    const currentTaskList = this.getGetTaskListByStatus(taskCurrentStatus);
+    const newTaskList = currentTaskList.value.filter(
+      (task) => task.id !== taskId,
+    );
+    currentTaskList.next(newTaskList);
+  }
+
   private getGetTaskListByStatus(taskStatus: TaskStatus) {
     const taskListObj = {
       [TaskStatusEnum.TODO]: this.todoTasks$,
