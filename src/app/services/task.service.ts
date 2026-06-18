@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { ITask } from '../interfaces/task.interface';
 import { ITaskFormControls } from '../interfaces/task-form-controls.interface';
 import { TaskStatusEnum } from '../enums/task-status.enum';
@@ -12,22 +12,31 @@ import { IComment } from '../interfaces/comment.interface';
 })
 export class TaskService {
   // Tarefas em A fazer
-  private todoTasks$ = new BehaviorSubject<ITask[]>([]);
-  readonly todoTasks = this.todoTasks$
-    .asObservable()
-    .pipe(map((tasks) => structuredClone(tasks)));
+  private todoTasks$ = new BehaviorSubject<ITask[]>(
+    this.loadTasksFromLocalStorage(TaskStatusEnum.TODO),
+  );
+  readonly todoTasks = this.todoTasks$.asObservable().pipe(
+    map((tasks) => structuredClone(tasks)),
+    tap((tasks) => this.saveTasksOnLocalStorage(TaskStatusEnum.TODO, tasks)),
+  );
 
   // Tarefas em Fazendo
-  private doingTasks$ = new BehaviorSubject<ITask[]>([]);
-  readonly doingTasks = this.doingTasks$
-    .asObservable()
-    .pipe(map((tasks) => structuredClone(tasks)));
+  private doingTasks$ = new BehaviorSubject<ITask[]>(
+    this.loadTasksFromLocalStorage(TaskStatusEnum.DOING),
+  );
+  readonly doingTasks = this.doingTasks$.asObservable().pipe(
+    map((tasks) => structuredClone(tasks)),
+    tap((tasks) => this.saveTasksOnLocalStorage(TaskStatusEnum.DOING, tasks)),
+  );
 
   // Tarefas em Concluído
-  private doneTasks$ = new BehaviorSubject<ITask[]>([]);
-  readonly doneTasks = this.doneTasks$
-    .asObservable()
-    .pipe(map((tasks) => structuredClone(tasks)));
+  private doneTasks$ = new BehaviorSubject<ITask[]>(
+    this.loadTasksFromLocalStorage(TaskStatusEnum.DONE),
+  );
+  readonly doneTasks = this.doneTasks$.asObservable().pipe(
+    map((tasks) => structuredClone(tasks)),
+    tap((tasks) => this.saveTasksOnLocalStorage(TaskStatusEnum.DONE, tasks)),
+  );
 
   // Parâmetro vai ser desse tipo, porque é o que o formulário vai enviar no welcome section
   addTask(taskInfos: ITaskFormControls) {
@@ -123,6 +132,24 @@ export class TaskService {
       (task) => task.id !== taskId,
     );
     currentTaskList.next(newTaskList);
+  }
+
+  private loadTasksFromLocalStorage(key: string) {
+    try {
+      const storedTasks = localStorage.getItem(key);
+      return storedTasks ? JSON.parse(storedTasks) : [];
+    } catch (error) {
+      console.error('Error loading tasks from localStorage:', error);
+      return [];
+    }
+  }
+
+  private saveTasksOnLocalStorage(key: string, tasks: ITask[]) {
+    try {
+      localStorage.setItem(key, JSON.stringify(tasks));
+    } catch (error) {
+      console.error('Error saving tasks to localStorage:', error);
+    }
   }
 
   private getGetTaskListByStatus(taskStatus: TaskStatus) {
